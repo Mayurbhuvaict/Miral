@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-1.0.xsd">
+    <meta>
+        <name>SwagNewsletter</name>
+        <label>Intelligenter Newsletter</label>
+        <label lang="de-DE">Intelligenter Newsletter</label>
+        <description>Plugin which allows you to send customer specific mails featured by powerful analyzing tools</description>
+        <description lang="de-DE">Plugin which allows you to send customer specific mails featured by powerful analyzing tools</description>
+        <author>shopware AG</author>
+        <copyright>(c) by shopware AG</copyright>
+        <version>1.0.86</version>
+        <icon>Resources/config/plugin.png</icon>
+        <license>MIT</license>
+    </meta>
+    <setup>
+        <registrationUrl>http://127.0.0.1:8000/app-registration</registrationUrl>
+        <secret>01f17b06402f0a24e6d2b084a6d18a87</secret>
+    </setup>
+    <permissions>
+        <create>state_machine_history</create>
+        <create>order</create>
+        <read>order</read>
+        <read>order_line_item</read>
+        <update>order</update>
+        <read>state_machine_state</read>
+        <read>customer_group</read>
+        <read>salutation</read>
+        <read>customer</read>
+        <read>newsletter_recipient</read>
+        <create>newsletter_recipient</create>
+        <update>newsletter_recipient</update>
+        <delete>newsletter_recipient</delete>
+        <read>sales_channel</read>
+
+    </permissions>
+    <webhooks>
+        <webhook name="order-placed" url="http://127.0.0.1:8000/hooks/order/placed" event="checkout.order.placed"/>
+    </webhooks>
+    <admin>
+        <action-button action="addOrderList" entity="order" view="detail" url="http://127.0.0.1:8000/actionbutton/add/orderlist">
+            <label>Add order list</label>
+            <label lang="de-DE">Bestellliste hinzufügen</label>
+        </action-button>
+
+        <module name="orderModule"
+                source="http://127.0.0.1:8000/iframe/orderlist"
+                parent="sw-order"
+                position="50"
+        >
+            <label>Order Module</label>
+            <label lang="de-DE">Order Module</label>
+        </module>
+
+        <module name="newsletterModule"
+                source="http://127.0.0.1:8000/newslettermanager"
+                parent="sw-marketing"
+                position="50"
+        >
+            <label>Newsletter Manager</label>
+            <label lang="de-DE">Newsletter Manager</label>
+        </module>
+    </admin>
+
+    <custom-fields>
+        <custom-field-set>
+            <name>swag_orderlist</name>
+            <label>Order list</label>
+            <related-entities>
+                <order/>
+            </related-entities>
+            <fields>
+                <text-area name="order-list">
+                    <position>1</position>
+                    <label>Order list</label>
+                    <label lang="de-DE">Bestellliste</label>
+                </text-area>
+                <int name="test_int_field">
+                    <label>Test int field</label>
+                    <label lang="de-DE">Test Ganzzahlenfeld</label>
+                    <help-text>This is an int field.</help-text>
+                    <help-text lang="de-DE">Dies ist ein int field.</help-text>
+                    <position>1</position>
+                    <steps>2</steps>
+                    <min>0</min>
+                    <max>1</max>
+                    <placeholder>Enter an int...</placeholder>
+                    <required>true</required>
+                </int>
+            </fields>
+        </custom-field-set>
+    </custom-fields>
+</manifest>
