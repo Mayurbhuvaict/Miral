@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        {% block block_kohlkramer_theme_product_four_column %}
+            {% set columns = 4 %}
+            {% set productElementTypes = ['product-box', 'product-slider', 'buy-box'] %}
+            {% set id = element.id %}
+
+            {% block block_kohlkramer_theme_product_four_column_left %}
+                {% set element = block.slots.getSlot('left') %}
+                {% if element.type not in productElementTypes or element.data.products or element.data.product %}
+                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4 mb-xl-0" data-cms-element-id="{{ element.id }}">
+                        {% block block_product_three_column_left_inner %}
+                            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                        {% endblock %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+            {% block block_kohlkramer_theme_product_four_column_center %}
+                {% set element = block.slots.getSlot('center') %}
+                {% if element.type not in productElementTypes or element.data.products or element.data.product %}
+                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4 mb-xl-0" data-cms-element-id="{{ element.id }}">
+                        {% block block_product_three_column_center_inner %}
+                            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                        {% endblock %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+            {% block block_kohlkramer_theme_product_four_column_right %}
+                {% set element = block.slots.getSlot('right') %}
+                {% if element.type not in productElementTypes or element.data.products or element.data.product %}
+                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4 mb-xl-0" data-cms-element-id="{{ element.id }}">
+                        {% block block_product_three_column_right_inner %}
+                            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                        {% endblock %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+            {% block block_kohlkramer_theme_product_four_column_rights %}
+                {% set element = block.slots.getSlot('right') %}
+                {% if element.type not in productElementTypes or element.data.products or element.data.product %}
+                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4 mb-xl-0" data-cms-element-id="{{ element.id }}">
+                        {% block block_product_three_column_rights_inner %}
+                            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                        {% endblock %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+        {% endblock %}
+    </div>
+</div>

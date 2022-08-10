@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title lang="en-GB">ICTECH Limited Login Settings</title>
+        <title lang="de-DE">ICTECH Limited Login-Einstellungen</title>
+        <input-field type="bool">
+            <name>loadLimitedLogin</name>
+            <required>true</required>
+            <defaultValue>true</defaultValue>
+            <label>Active Limited Login</label>
+            <label lang="de-DE">Aktive eingeschränkte Anmeldung</label>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>limitedLoginAllowedRetries</name>
+            <label>Allowed Retries</label>
+            <label lang="de-DE">Zulässige Wiederholungen</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>1</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>2</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>3</name>
+                </option>
+                <option>
+                    <id>4</id>
+                    <name>4</name>
+                </option>
+                <option>
+                    <id>5</id>
+                    <name>5</name>
+                </option>
+                <option>
+                    <id>6</id>
+                    <name>6</name>
+                </option>
+                <option>
+                    <id>7</id>
+                    <name>7</name>
+                </option>
+                <option>
+                    <id>8</id>
+                    <name>8</name>
+                </option>
+                <option>
+                    <id>9</id>
+                    <name>9</name>
+                </option>
+                <option>
+                    <id>10</id>
+                    <name>10</name>
+                </option>
+            </options>
+            <defaultValue>4</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>limitedLoginMinutesLockout</name>
+            <label>Minutes lockout</label>
+            <label lang="de-DE">Minuten Sperre</label>
+            <options>
+                <option>
+                    <id>2</id>
+                    <name>2</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>3</name>
+                </option>
+                <option>
+                    <id>5</id>
+                    <name>5</name>
+                </option>
+                <option>
+                    <id>15</id>
+                    <name>15</name>
+                </option>
+                <option>
+                    <id>30</id>
+                    <name>30</name>
+                </option>
+                <option>
+                    <id>45</id>
+                    <name>45</name>
+                </option>
+                <option>
+                    <id>60</id>
+                    <name>60</name>
+                </option>
+            </options>
+            <defaultValue>5</defaultValue>
+        </input-field>
+
+
+        <input-field type="single-select">
+            <name>limitedLoginLockoutIncreasesTime</name>
+            <label>Lockout increases lock out time 24 hours</label>
+            <label lang="de-DE">Lockout erhöht die Sperrzeit um 24 Stunden</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>1</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>2</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>3</name>
+                </option>
+                <option>
+                    <id>4</id>
+                    <name>4</name>
+                </option>
+                <option>
+                    <id>5</id>
+                    <name>5</name>
+                </option>
+            </options>
+            <defaultValue>3</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>limitedLoginHoursUntilRetriesAreReset</name>
+            <label>Select hours until retries are reset</label>
+            <label lang="de-DE">Wählen Sie die Stunden aus, bis die Wiederholungen zurückgesetzt werden</label>
+            <options>
+                <option>
+                    <id>12</id>
+                    <name>12</name>
+                </option>
+                <option>
+                    <id>24</id>
+                    <name>24</name>
+                </option>
+            </options>
+            <defaultValue>12</defaultValue>
+        </input-field>
+
+    </card>
+</config>

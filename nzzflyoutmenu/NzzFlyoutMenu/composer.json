@@ -1,0 +1,19 @@
+{
+  "name": "swag/nzz-flyout-menu",
+  "description": "Nzz Flyout Menu",
+  "type": "shopware-platform-plugin",
+    "version": "1.0.16",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "NzzFlyoutMenu\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "NzzFlyoutMenu\\NzzFlyoutMenu",
+    "label": {
+      "de-DE": "Nzz Flyout Menu",
+      "en-GB": "Nzz Flyout Menu"
+    }
+  }
+}

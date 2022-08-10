@@ -1,0 +1,19 @@
+{
+  "name": "kohlkramer2022/kohlkramer2022-custom-theme",
+  "description": "KohlKramer2022 Custom Theme",
+  "version": "v1.0.9",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "KohlKramer2022\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "KohlKramer2022\\KohlKramer2022",
+    "label": {
+      "de-DE": "KohlKramer2022 Custom Theme plugin",
+      "en-GB": "KohlKramer2022 Custom Theme plugin"
+    }
+  }
+}

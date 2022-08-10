@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_header %}
+    <header class="header-main kohlkramer-header" sticky-header>
+        {% block base_header_inner %}
+            <div class="container">
+                {% sw_include '@Storefront/storefront/layout/header/header.html.twig' %}
+            </div>
+        {% endblock %}
+    </header>
+{% endblock %}
+
+{% block base_navigation %}
+{% endblock %}
+
+{% block base_footer %}
+    <footer class="footer-main border-top-0">
+        {% block base_footer_inner %}
+            {% sw_include '@Storefront/storefront/layout/footer/footer.html.twig' %}
+        {% endblock %}
+    </footer>
+{% endblock %}
+
+

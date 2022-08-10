@@ -1,0 +1,41 @@
+{
+    "kohlkramer-home-slider": {
+        "general": {
+            "mainMenuItemGeneral": "Home Page Slider",
+            "descriptionTextModule": "Manage Home Slider here"
+        },
+        "list": {
+            "addButtonText": "Add Image Slider",
+            "columnName": "Image Slider Title",
+            "columnNoOfComponent": "No. of components",
+            "contextMenuDelete": "Remove Image Slider",
+            "emptyList": "No Image Slider yet",
+            "textTitle": "Image Slider",
+            "titleSidebarItemRefresh": "Refresh",
+            "image": "Image"
+        },
+        "detail": {
+            "nameLabel": "Headline",
+            "cancelButtonText": "Cancel",
+            "saveButtonText": "Save",
+            "errorTitle": "Error saving the Home Slider",
+            "headlineLabel": "Headline",
+            "description": "Description",
+            "textHeadline": "Home Slider",
+            "namePlaceholder": "Enter Name",
+            "placeholderHeadline": "Enter Headline",
+            "cardInformationTitle": "Home Silder Configuration",
+            "errorMessage": "Please fill in all required fields.",
+            "btnTextLabel": "Link Text",
+            "btnTextLinkLabel": "Link",
+            "imageMedia": "Slider image",
+            "UseAsIamge": "Use As Image"
+        },
+        "block": {
+            "blockLabel": "Home Page Slider"
+        },
+        "element": {
+            "elementLabel": "Home Page Slider"
+        }
+    }
+}

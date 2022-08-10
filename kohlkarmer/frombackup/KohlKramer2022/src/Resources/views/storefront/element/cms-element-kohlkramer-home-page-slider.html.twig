@@ -1,0 +1,4 @@
+{% block cms_element_kohlkramer_shop_home_page_slider %}
+    {% set results = element.data %}
+    {% sw_include '@Storefront/storefront/component/homepage/slider.html.twig' with {results: results} %}
+{% endblock %}

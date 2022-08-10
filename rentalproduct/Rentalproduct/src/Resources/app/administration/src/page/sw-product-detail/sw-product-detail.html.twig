@@ -1,0 +1,6 @@
+{% block sw_product_detail_content_tabs_reviews %}
+    {% parent %}
+    <sw-tabs-item v-if="showRentalTab" :route="{ name: 'sw.product.detail.rentalproduct', params: { id: $route.params.id } }" :title="$tc('sw-product.rentalProduct.cardTitle')">
+        {{ $tc('sw-product.rentalProduct.cardTitle') }}
+    </sw-tabs-item>
+{% endblock %}

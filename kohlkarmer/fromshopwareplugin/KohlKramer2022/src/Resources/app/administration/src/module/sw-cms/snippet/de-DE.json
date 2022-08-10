@@ -1,0 +1,24 @@
+{
+    "KohlKramer-theme": {
+        "blocks": {
+            "kohlkramer-theme": {
+                "productFourColumn": {
+                    "label": "KohlKramer Theme Produktbox mit vier Spalten"
+                },
+                "imageTextBubble": {
+                    "label": "KohlKramer Theme Produktbox mit vier Spalten"
+                }
+            }
+        },
+        "elements": {
+            "productBox": {
+                "label": "KohlKramer Theme Produktbox"
+            }
+        },
+        "category": {
+            "label": {
+                "blockCategoryKohlKramerTheme": "KohlKramer Theme"
+            }
+        }
+    }
+}

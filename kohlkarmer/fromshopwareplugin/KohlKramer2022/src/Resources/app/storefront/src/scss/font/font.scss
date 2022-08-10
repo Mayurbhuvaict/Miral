@@ -1,0 +1,22 @@
+/* heebo font */
+@font-face {
+    font-family: 'tcb';
+    src: url('#{$sw-asset-theme-url}/bundles/kohlkramer2022/font/tcb/TCB-REGULAR.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'timesroman';
+    src: url('#{$sw-asset-theme-url}/bundles/kohlkramer2022/font/time-roman/OPTITimes-Roman.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'luckyfellas';
+    src: url('#{$sw-asset-theme-url}/bundles/kohlkramer2022/font/luckyfellas/LuckyFellas.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

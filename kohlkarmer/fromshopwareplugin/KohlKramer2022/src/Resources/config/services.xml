@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="KohlKramer2022\Resolver\FourProductBoxResolver">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+
+        <service id="KohlKramer2022\Core\Content\KohlKramerHomeSlider\DataResolver\SliderCmsElementResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+
+        <service id="KohlKramer2022\Core\Content\KohlKramerHomeSlider\KohlKramerHomeSliderDefinition">
+            <tag name="shopware.entity.definition" entity="KohlKramer_home_slider"/>
+        </service>
+
+        <service
+            id="KohlKramer2022\Core\Content\KohlKramerHomeSlider\Aggregate\KohlKramerHomeSliderTranslation\KohlKramerHomeSliderTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="KohlKramer_home_slider_translation"/>
+        </service>
+
+        <service id="KohlKramer2022\Core\Content\Extension\LanguageExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="KohlKramer2022\Core\Content\Extension\MediaExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+
+    </services>
+</container>

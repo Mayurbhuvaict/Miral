@@ -1,0 +1,32 @@
+{% sw_extends '@Storefront/storefront/component/account/login.html.twig' %}
+
+{% block component_account_login_form_error %}
+    {{ dump(loginError) }}
+    {% if loginError %}
+        {{ dump("start") }} {{ dump(errorSnippet1) }} {{ dump("end") }}
+        {% if errorSnippet != null %}
+            {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                type: "danger",
+                content: errorSnippet|trans|sw_sanitize
+            } %}
+        {% elseif waitTime != null %}
+            {{ dump("waittime login throttle wait time never") }}
+            {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                type: "info",
+                content: "account.loginThrottled"|trans({"%seconds%": waitTime})|sw_sanitize
+            } %}
+        {% elseif errorSnippet1  != null %}
+            {{ dump("custom data") }}
+            {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                type: "danger",
+                content: "ac block for"~ waitTime ~ "minutes."
+            } %}
+        {% else %}
+            {{ dump("waittime login throttle wait time badcredentital") }}
+            {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                type: "danger",
+                content: "account.loginBadCredentials"|trans|sw_sanitize
+            } %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

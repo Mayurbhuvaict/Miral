@@ -1,0 +1,16 @@
+{
+    "sw-product": {
+        "rentalProduct": {
+            "cardTitle": "LES Rental Product",
+            "buttonAdd": "Add new Days",
+            "buttonDelete": "Delete",
+            "dayRule": "Rule",
+            "columnFrom": "Day from...",
+            "columnTo": "to...",
+            "columnRule": "Rule",
+            "dayDisabledTooltip": "The start value of the first Day has to be 1.",
+            "deletionNotPossibleMessage": "At least one day tier needed. Try deleting the entire pricing rule instead.",
+            "emptyStateDescription": "There is no Rental Product configured for this product, yet."
+        }
+    }
+}

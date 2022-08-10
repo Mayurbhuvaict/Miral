@@ -1,0 +1,147 @@
+{
+  "name": "KohlKramer2022",
+  "author": "Shopware AG",
+  "views": [
+     "@Storefront",
+     "@Plugins",
+     "@KohlKramer2022"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@Storefront",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/storefront/js/kohl-kramer2022.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "app/storefront/src/assets"
+  ],
+    "config": {
+        "fields": {
+            "sw-color-brand-primary": {
+                "label": {
+                    "en-GB": "Primary colour",
+                    "de-DE": "Primärfarbe"
+                },
+                "type": "color",
+                "value": "#000000",
+                "editable": true,
+                "block": "themeColors",
+                "order": 100
+            },
+            "sw-color-brand-secondary": {
+                "label": {
+                    "en-GB": "Secondary colour",
+                    "de-DE": "Sekundärfarbe"
+                },
+                "type": "color",
+                "value": "#8e1b14",
+                "editable": true,
+                "block": "themeColors",
+                "order": 200
+            },
+            "sw-font-family-base": {
+                "label": {
+                    "en-GB": "Fonttype text",
+                    "de-DE": "Schriftart Text"
+                },
+                "type": "fontFamily",
+                "value": "tcb",
+                "editable": true,
+                "block": "typography",
+                "order": 100
+            },
+            "sw-font-family-headline": {
+                "label": {
+                    "en-GB": "Fonttype headline",
+                    "de-DE": "Schriftart Überschrift"
+                },
+                "type": "fontFamily",
+                "value": "timesroman",
+                "editable": true,
+                "block": "typography",
+                "order": 300
+            },
+            "sw-font-family-lucky-fellas": {
+                "label": {
+                    "en-GB": "Fonttype headline",
+                    "de-DE": "Schriftart Überschrift"
+                },
+                "type": "fontFamily",
+                "value": "luckyfellas",
+                "editable": true,
+                "block": "typography",
+                "order": 300
+            },
+            "sw-heading-font-size-headline": {
+                "label": {
+                    "en-GB": "Fontsize headline",
+                    "de-DE": "Lettergrootte kop"
+                },
+                "type": "fontSize",
+                "value": "90px",
+                "editable": true,
+                "block": "typography",
+                "order": 300
+            },
+            "sw-text-font-size-headline": {
+                "label": {
+                    "en-GB": "Fontsize headline",
+                    "de-DE": "Lettergrootte kop"
+                },
+                "type": "fontSize",
+                "value": "24px",
+                "editable": true,
+                "block": "typography",
+                "order": 300
+            },
+            "header-main-kohlKramer-header": {
+                "label": {
+                    "en-GB": "Header colour",
+                    "de-DE": "Kopkleur"
+                },
+                "type": "color",
+                "value": "#bba587",
+                "editable": true,
+                "block": "themeColors",
+                "order": 100
+            },
+            "header-middle-kohlKramer-header": {
+                "label": {
+                    "en-GB": "Header middle colour",
+                    "de-DE": "Middelste kleur kop"
+                },
+                "type": "color",
+                "value": "#fff",
+                "editable": true,
+                "block": "themeColors",
+                "order": 100
+            },
+            "footer-main-kohlKramer-footer": {
+                "label": {
+                    "en-GB": "Footer colour",
+                    "de-DE": "Voettekst kleur"
+                },
+                "type": "color",
+                "value": "#bba587",
+                "editable": true,
+                "block": "themeColors",
+                "order": 100
+            },
+            "theme-secondary-color": {
+                "label": {
+                    "en-GB": "theme colour",
+                    "de-DE": "thema kleur"
+                },
+                "type": "color",
+                "value": "#bba587",
+                "editable": true,
+                "block": "themeColors",
+                "order": 300
+            }
+        }
+    }
+}

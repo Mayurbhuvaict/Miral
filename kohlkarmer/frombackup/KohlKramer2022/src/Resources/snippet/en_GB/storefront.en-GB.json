@@ -1,0 +1,32 @@
+{
+    "general": {
+        "header": {
+            "account": "My account"
+        },
+        "footer": {
+            "location": {
+                "title": "Kohl Kramer Gmbh",
+                "title1": "HardtstraBe 5",
+                "title2": "34582 Borken - Trockenerfurth"
+            },
+            "clock": {
+                "title": "Opening hours:",
+                "title1": "Mon 7.30 a.m. - 12.30 p.m. ",
+                "title2": "Tue-Fri. 9.30 a.m. - 6 p.m.",
+                "title3": "Sat 7.30 a.m. - 12.30 p.m"
+            },
+            "offers": {
+                "title": "TO OUR",
+                "title1": "JOB OFFERS"
+            },
+            "contact": {
+                "title": "05682 / 2310"
+            },
+            "followUs": {
+                "title": "Follow us...",
+                "facebookUrl": "abc",
+                "linkdInUrl": "pqr"
+            }
+        }
+    }
+}

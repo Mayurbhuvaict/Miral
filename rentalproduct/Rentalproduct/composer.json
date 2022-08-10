@@ -1,0 +1,19 @@
+{
+  "name": "swag/plugin-skeleton",
+  "description": "Rental Product",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+    "version": "1.0.1",
+  "autoload": {
+    "psr-4": {
+      "Rentalproduct\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Rentalproduct\\Rentalproduct",
+    "label": {
+      "de-DE": "Rental Product",
+      "en-GB": "Rental Product"
+    }
+  }
+}

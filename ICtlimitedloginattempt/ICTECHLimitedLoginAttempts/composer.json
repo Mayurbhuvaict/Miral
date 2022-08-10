@@ -1,0 +1,37 @@
+{
+    "name": "ict/limited-login-attempts",
+    "description": "Limited Login Attempts plugin",
+    "type": "shopware-platform-plugin",
+    "version": "v1.0.1",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "ICTECHLimitedLoginAttempts\\": "src/"
+        }
+    },
+    "require": {
+        "shopware/core": ">=6.4.0",
+        "shopware/administration": "*",
+        "shopware/storefront": "*"
+    },
+    "extra": {
+        "shopware-plugin-class": "ICTECHLimitedLoginAttempts\\ICTECHLimitedLoginAttempts",
+        "plugin-icon": "ict.png",
+        "label": {
+            "de-DE": "ICTECH Limited Login Attempts",
+            "en-GB": "ICTECH Limited Login Attempts"
+        },
+        "description": {
+            "de-DE": "Limited Login Attempts",
+            "en-GB": "Limited Login Attempts"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.icreativetechnologies.com",
+            "en-GB": "https://www.icreativetechnologies.com"
+        },
+        "supportLink": {
+            "de-DE": "https://support.icreativetechnologies.com/",
+            "en-GB": "https://support.icreativetechnologies.com/"
+        }
+    }
+}

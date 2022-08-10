@@ -1,0 +1,19 @@
+.sw-cms-preview-kohlkramer-theme-product-four-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-gap: 15px;
+    padding: 15px;
+}
+
+.sw-cms-product-box-preview {
+    display: block;
+    text-align: center;
+
+    .sw-cms-product-box-preview__action {
+        line-height: normal;
+        margin-top: 10px;
+        background: linear-gradient(to bottom, #7793ae 0%, #6a849c 100%);
+        border-radius: 5px;
+        color:#fff;
+    }
+}

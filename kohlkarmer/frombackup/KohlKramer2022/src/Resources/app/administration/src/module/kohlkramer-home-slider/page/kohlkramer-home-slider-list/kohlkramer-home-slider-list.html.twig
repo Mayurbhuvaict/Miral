@@ -1,0 +1,74 @@
+{% block kohlkramer_home_slider_list %}
+    <sw-page class="kohlkramer-home-slider-list">
+
+        {% block kohlkramer_home_slider_list_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block kohlkramer_home_slider_list_smart_bar_header_title %}
+                    <h2>
+                        {% block kohlkramer_home_slider_list_smart_bar_header_title_text %}
+                            {{ $tc('kohlkramer-home-slider.list.textTitle') }}
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block kohlkramer_home_slider_list_language_switch %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+        {% block kohlkramer_home_slider_list_smart_bar_actions %}
+            <template #smart-bar-actions>
+                <sw-button variant="primary" :routerLink="{ name: 'kohlkramer.home.slider.create' }">
+                    {{ $t('kohlkramer-home-slider.list.addButtonText') }}
+                </sw-button>
+            </template>
+        {% endblock %}
+
+        <template #content>
+            {% block kohlkramer_home_slider_list_content %}
+                <sw-entity-listing
+                    v-if="kohlkramerData"
+                    ref="kohlkramerDataGrid"
+                    :items="kohlkramerData"
+                    :columns="columns"
+                    :repository="kohlkramerHomeSliderRepository"
+                    detail-route="kohlkramer.home.slider.detail"
+                    :is-loading="isLoading"
+                    :disable-data-fetching="true"
+                    :show-selection="true"
+                >
+                    <template #column-mediaId="{ item }">
+                        <sw-media-preview-v2 :source="item.mediaId"></sw-media-preview-v2>
+                    </template>
+
+                </sw-entity-listing>
+            {% endblock %}
+
+            {% block kohlkramer_home_slider_list_empty_state %}
+                <sw-empty-state v-if="!isLoading && !total"
+                                :title="$tc('kohlkramer-home-slider.list.emptyList')"></sw-empty-state>
+            {% endblock %}
+
+            {% block kohlkramer_home_slider_list_grid_loader %}
+                <sw-loader v-if="isLoading"></sw-loader>
+            {% endblock %}
+        </template>
+
+        {% block kohlkramer_home_slider_list_sidebar %}
+            <template #sidebar>
+                <sw-sidebar>
+                    {% block kohlkramer_home_slider_list_sidebar_refresh %}
+                        <sw-sidebar-item
+                            icon="default-arrow-360-left"
+                            :title="$tc('kohlkramer-home-slider.list.titleSidebarItemRefresh')"
+                            @click="onRefresh">
+                        </sw-sidebar-item>
+                    {% endblock %}
+                </sw-sidebar>
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

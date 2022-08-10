@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'tcb';
+    src: url("./assets/fonts/tcb/TCB.TTF") format("truetype");
+}
+
+@font-face {
+    font-family: 'timesroman';
+    src: url("./assets/fonts/time-roman/OPTITimes-Roman.otf") format("opentype");
+}
+
+body {
+    h1 {
+        font-family: $primaryFont;
+        font-size: $desktopH1;
+    }
+    p, span {
+        font-family: $secondaryFont;
+    }
+}
+
+
+//
+// Custom Color Variables
+//
+
+$primaryColor: #000;
+$secondaryColor: #8e1b15;
+
+//
+// Font-Family Variables
+//
+$primaryFont: 'tcb';
+$secondaryFont: 'timesroman';
+
+
+//
+// Header Color Variables
+//
+$topHeaderBG: #bba587;
+$topHeaderColor: $secondaryColor;
+
+$middleHeaderBG: #fff;
+$middleHeaderColor: $secondaryColor;
+
+
+//
+// Typography Variables
+//
+
+$desktopH1: 90px;
+$desktopP: 24px;
+

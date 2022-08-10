@@ -1,0 +1,154 @@
+
+.navigation-flyout {
+    overflow-y: scroll;
+    max-height: 500px;
+}
+
+.navigation-flyout-link {
+    color:#000;
+    margin:0 1.25rem;
+    text-transform: capitalize;
+
+    &.is-level-0 {
+        padding:.3125rem 0rem .3125rem 0rem;
+
+
+        span {
+            font-weight: bold;
+            padding: 0.3125rem 0rem 0.3125rem 0rem;
+            font-size: 16px;
+            -webkit-transition: all .1s ease;
+            transition: all .1s ease;
+            color: #000;
+            display: block;
+        }
+    }
+}
+.navigation-flyout-categories:not(.is-level-0) {
+    width: 75%;
+    margin-left: 0 !important;
+}
+.navigation-flyout-categories.is-level-0 {
+    -webkit-column-count: 3 !important;
+    column-count: 3 !important;
+}
+.navigation-flyout-categories.is-level-0 > {
+
+
+    .navigation-flyout-col::before {
+        display: none;
+    }
+}
+
+.navigation-flyout-content {
+
+    .col-12 {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    h6 {
+        font-size: 21px;
+    }
+}
+
+.navigation-flyout-content {
+
+    .nzz-align-bottom {
+        width: 100%;
+
+        h6 {
+            font-size: 21px;
+            padding-left: 40px !important;
+        }
+    }
+}
+
+.nzz-align-default {
+    width: 25%;
+    border-left: 1px solid #000000;
+    padding-left: 20px;
+}
+
+.nzz-align-right {
+    width: 25%;
+    border-left:1px solid #000000;
+    padding-left: 20px;
+
+    .navigation-flyout-teaser-image-container {
+        height: auto;
+    }
+    .navigation-flyout-teaser-image {
+        width: auto;
+        height: auto;
+    }
+
+}
+
+.nzz-align-bottom {
+
+
+    .nzz-flyout-custom {
+        display: flex;
+        column-gap: 20px;
+        padding: 0 15px 0 40px;
+    }
+
+    .navigation-flyout-teaser {
+        margin: 12px 0;
+        width: 23%;
+        text-align: center;
+
+        .navigation-flyout-teaser-image-container {
+            height: 100%;
+            max-height: 250px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        span {
+            text-align: center;
+        }
+    }
+
+    .navigation-flyout-teaser-image {
+        height: auto;
+    }
+}
+
+
+.navigation-flyout-teaser {
+    margin: 12px 0;
+
+    span {
+        font-size: 14px;
+        font-weight: 300;
+        display: block;
+        padding: 10px 0 0 0;
+    }
+}
+
+.navigation-flyout {
+    .multiprice.price-various {
+        .product-cheapest-price {
+            min-height: auto;
+        }
+    }
+}
+
+.navigation-flyout-teaser {
+
+    .multiprice {
+
+        &.price-various {
+
+            span {
+                padding: 0;
+            }
+        }
+        .price-title {
+            line-height: 1.5;
+        }
+    }
+}
+

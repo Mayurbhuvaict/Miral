@@ -1,0 +1,13 @@
+{
+    "sw-category": {
+        "base": {
+            "nzz-dynamic-group": {
+                "cardTitleDynamicGroup": "NZZ Dynamic Group",
+                "labelDynamicGroup": "Dynamic Group",
+                "placeholderDynamicGroup": "Select Dynamic Group",
+                "helpTextDynamicGroup": "Select Dynamic Group which you want show in flyoutmenu in frrontend side"
+            }
+        }
+    }
+}
+

@@ -1,0 +1,151 @@
+{% block kohlkramer_home_slider_detail %}
+    <sw-page class="kohlkramer-home-sliderdetail">
+
+        {% block kohlkramer_home_slider_detail_header %}
+            <template #smart-bar-header>
+                <h2>{{ kohlkramerDataTitle }}</h2>
+            </template>
+        {% endblock %}
+
+        {% block kohlkramer_home_slider_detail_language_switch %}
+            <template #language-switch>
+                <sw-language-switch
+                    :saveChangesFunction="saveOnLanguageChange"
+                    :abortChangeFunction="abortOnLanguageChange"
+                    :disabled="!kohlkramerHomeSliderId"
+                    @on-change="getkohlkramerHomeSlider">
+                </sw-language-switch>
+            </template>
+        {% endblock %}
+
+        {% block kohlkramer_home_slider_detail_smart_bar_actions %}
+            <template #smart-bar-actions>
+
+                <sw-button :routerLink="{ name: 'kohlkramer.home.slider.list' }">
+                    {{ $t('kohlkramer-home-slider.detail.cancelButtonText') }}
+                </sw-button>
+
+                <sw-button-group
+                    class="kohlkramer-home-slider-detail__save-button-group"
+                    :splitButton="true"
+                >
+                    {% block kohlkramer_home_slider_detail_detail_smart_bar_actions_save %}
+
+                        <sw-button-process
+                            v-tooltip.bottom="tooltipSave"
+                            :isLoading="isLoading"
+                            :processSuccess="processSuccess"
+                            variant="primary"
+                            @process-finish="saveFinish"
+                            @click="onClickSave">
+                            {{ $t('kohlkramer-home-slider.detail.saveButtonText') }}
+                        </sw-button-process>
+
+                    {% endblock %}
+
+
+                </sw-button-group>
+
+            </template>
+        {% endblock %}
+
+        {% block kohlkramer_home_slider_detail_content %}
+            <template slot="content">
+                <sw-card-view>
+
+                    {% block kohlkramer_home_slider_detail_content_language_info %}
+
+                        <sw-language-info
+                            :entity-description="placeholder(kohlkramerData, 'name', $tc('kohlkramer-home-slider.detail.textHeadline'))"
+                            :is-new-entity="!kohlkramerHomeSliderId"></sw-language-info>
+
+                    {% endblock %}
+
+                    {% block kohlkramer_home_slider_detail_content_bundle_card %}
+                        <sw-card :title="$tc('kohlkramer-home-slider.detail.cardInformationTitle')" v-if="kohlkramerData"
+                                 :isLoading="isLoading">
+
+                            {% block kohlkramer_home_slider_detail_name_field %}
+                                <sw-field
+                                    v-if="!isLoading"
+                                    :label="$t('kohlkramer-home-slider.detail.nameLabel')"
+                                    v-model="kohlkramerData.title"
+                                    :placeholder="placeholder(kohlkramerData, 'name', $t('kohlkramer-home-slider.detail.namePlaceholder'))"
+                                    :required="isTitleRequired"
+                                    type="text"
+                                ></sw-field>
+                            {% endblock %}
+
+                            {% block kohlkramer_home_slider_detail_linktext_field %}
+                                <sw-field
+                                    v-if="!isLoading"
+                                    :label="$t('kohlkramer-home-slider.detail.btnTextLabel')"
+                                    v-model="kohlkramerData.linkText"
+                                    :placeholder="placeholder(kohlkramerData, 'headline', $t('kohlkramer-home-slider.detail.placeholderHeadline'))"
+                                >
+                                </sw-field>
+                            {% endblock %}
+
+                            {% block kohlkramer_home_slider_detail_headline_field %}
+                                <sw-field
+                                    v-if="!isLoading"
+                                    :label="$t('kohlkramer-home-slider.detail.btnTextLinkLabel')"
+                                    v-model="kohlkramerData.link"
+                                    :placeholder="placeholder(kohlkramerData, 'headline', $t('kohlkramer-home-slider.detail.placeholderHeadline'))"
+                                >
+                                </sw-field>
+                            {% endblock %}
+
+                            {% block kohlkramer_home_slider_detail_description_field %}
+                                <sw-text-editor
+                                    v-if="!isLoading"
+                                    v-model="kohlkramerData.description"
+                                    :label="$tc('kohlkramer-home-slider.detail.description')"
+                                    :placeholder="placeholder(kohlkramerData, 'description', $t('kohlkramer-home-slider.detail.description'))"
+                                >
+                                </sw-text-editor>
+                            {% endblock %}
+
+
+                            {% block kohlkramer_home_slider_detail_logo_upload %}
+                                <sw-upload-listener
+                                    :upload-tag="uploadTag"
+                                    auto-upload
+                                    @media-upload-finish="setMediaItem"></sw-upload-listener>
+                                <sw-media-upload-v2
+                                    class="kohlkramer-home-slider-detail__logo-upload"
+                                    :source="mediaId"
+                                    :allow-multi-select="false"
+                                    variant="regular"
+                                    :upload-tag="uploadTag"
+                                    :label="$tc('kohlkramer-home-slider.detail.imageMedia')"
+                                    @sw-media-upload-v2-media-upload-success="setMediaItem"
+                                    @media-drop="onDropMedia"
+                                    @media-upload-sidebar-open="openMediaSidebar"
+                                    @media-upload-remove-image="onUnlinkLogo"
+                                ></sw-media-upload-v2>
+                            {% endblock %}
+                        </sw-card>
+                    {% endblock %}
+                </sw-card-view>
+            </template>
+        {% endblock %}
+
+        {% block kohlkramer_home_slider_detail_sidebar %}
+            <template slot="sidebar">
+                <sw-sidebar :propagate-width="true">
+                    <sw-sidebar-media-item
+                        ref="mediaSidebarItem">
+                        <template
+                            slot="context-menu-items"
+                            slot-scope="media">
+                            <sw-context-menu-item @click="setMediaFromSidebar(media.mediaItem)">
+                                {{ $tc('kohlkramer-home-slider.detail.UseAsIamge') }}
+                            </sw-context-menu-item>
+                        </template>
+                    </sw-sidebar-media-item>
+                </sw-sidebar>
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

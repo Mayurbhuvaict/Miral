@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="NzzFlyoutMenu\Core\Content\NzzDynamicGroup\NzzDynamicGroupDefinition">
+            <tag name="shopware.entity.definition" entity="nzz_dynamic_group" />
+        </service>
+
+        <service id="NzzFlyoutMenu\Core\Content\Extension\ProductStream\NzzProductStreamExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="NzzFlyoutMenu\Core\Content\Extension\Category\NzzCategoryExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="NzzFlyoutMenu\Subscriber\NzzHeaderNavigation">
+<!--            <argument type="service" id="category.repository"/>-->
+            <argument id="product_stream_mapping.repository" type="service" />
+            <argument id="product.repository" type="service" />
+            <argument type="service" id="unit.repository"/>
+<!--            <argument id="nzz_dynamic_group.repository" type="service" />-->
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <!--<argument type="service" id="sales_channel.product.repository"/>-->
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+
+    </services>
+
+
+</container>

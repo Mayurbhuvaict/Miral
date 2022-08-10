@@ -1,0 +1,210 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/flyout.html.twig' %}
+
+
+
+
+ {% block layout_navigation_flyout_content %}
+     {% set configvalue =  config('MultiplePrices.config.customerProductGroup') %}
+     {% set multiplePriceGrossNet =  config('MultiplePrices.config.multiplePriceGrossNet') %}
+
+     <div class="row navigation-flyout-content">
+         {% block layout_navigation_flyout_categories %}
+             <div class="col-12 col-xl-12">
+                 <div class="navigation-flyout-categories">
+                     {% block layout_navigation_flyout_categories_recoursion %}
+                         {% sw_include '@Storefront/storefront/layout/navigation/categories.html.twig' with {
+                             navigationTree: navigationTree.children,
+                             navigationMedia: category.media,
+                             page: page
+                         } only %}
+                     {% endblock %}
+                 </div>
+                 {% block layout_navigation_flyout_teaser %}
+                     {% set categoryTree = navigationTree %}
+                     {% if categoryTree.extensions %}
+                         {% set blockPosition = categoryTree.category.customFields.nzz_flyout_menu_position %}
+                         <div {% if blockPosition == "nzz-align-right" %} class="nzz-align-right" {% endif %} {% if blockPosition == "nzz-align-bottom" %} class="nzz-align-bottom" {% endif %} {% if blockPosition == null %} class="nzz-align-default" {% endif %}>
+                             {% block layout_navigation_flyout_teaser_categoryName %}
+                                 <h6>{{ name }}</h6>
+                             {% endblock %}
+                             <div class="nzz-flyout-custom">
+                                 {% if categoryTree.extensions %}
+                                     {% for row in categoryTree.extensions %}
+
+                                         <div class="navigation-flyout-teaser">
+                                             {% set localhostUrl = app.request.getSchemeAndHttpHost() %}
+                                             {% set publicUrl = app.request.getBaseURL() %}
+                                             {% set seoUrl = row.seoUrls.elements|first().seoPathInfo %}
+                                             {% set url = localhostUrl~publicUrl~"/"~seoUrl %}
+                                             {% set productName = row.translated.name %}
+                                             {#  {% set productDescription = row.translated.description %} #}
+
+                                             {% block layout_navigation_flyout_teaser_image_custom %}
+                                                 <a class="navigation-flyout-teaser-image-container"
+                                                    href="{{ url }}"
+                                                    title="{{ productName }}">
+                                                     {% sw_thumbnails 'navigation-flyout-teaser-image-thumbnails' with {
+                                                         media: row.cover.media,
+                                                         sizes: {
+                                                             'default': '310px'
+                                                         },
+                                                         attributes: {
+                                                             'class': 'navigation-flyout-teaser-image',
+                                                             'alt': (row.cover.media.translated.alt ?: ''),
+                                                             'title': (row.cover.media.translated.title ?: ''),
+                                                             'data-object-fit': 'cover'
+                                                         }
+                                                     } %}
+                                                 </a>
+                                             {% endblock %}
+                                             {% block layout_navigation_flyout_teaser_name %}
+                                                 <span>{{ productName }}</span>
+                                             {% endblock %}
+                                             <div class="multiprice price-various">
+                                                 {# {% block layout_navigation_flyout_teaser_price %}
+
+                                                 {% set priceArray = row.CalculatedPrice.price.elements %}
+
+                                                 {% for cheapestPrice in priceArray %}
+                                                     {{ cheapestPrice.gross|currency }}
+                                                     {% set isListPrice = cheapestPrice.listPrice %}
+
+                                                     {% if isListPrice != null %}
+
+                                                         {% set afterListPriceSnippetExists = "listing.afterListPrice"|trans|length > 0 %}
+                                                         {% set beforeListPriceSnippetExists = "listing.beforeListPrice"|trans|length > 0 %}
+                                                         {% set hideStrikeTrough = beforeListPriceSnippetExists or afterListPriceSnippetExists %}
+
+                                                         <span
+                                                             class="list-price{% if hideStrikeTrough %} list-price-no-line-through{% endif %}">
+                                                          {% if beforeListPriceSnippetExists %}{{ "listing.beforeListPrice"|trans|trim|sw_sanitize }}{% endif %}
+
+                                                         <span
+                                                             class="list-price-price"><br>{{ page.header.activeCurrency.symbol }} {{ cheapestPrice.listPrice.gross|number_format(2) }}</span>
+                                                          {% if afterListPriceSnippetExists %} {{ page.header.activeCurrency.symbol }} {{ "listing.afterListPrice"|number_format(2) }}{% endif %}
+                                                    </span>
+                                                     {% endif %}
+                                                 {% endfor %}
+                                             {% endblock %} #}
+
+                                                 {# @deprecated tag:v6.5.0 - purchaseUnit will be removed, use product.purchaseUnit if needed #}
+                                                 {% set purchaseUnit = row.purchaseUnit %}
+                                                 {# @deprecated tag:v6.5.0 - listingPrice will be removed without replacement, since it was removed from the product struct #}
+                                                 {% set listingPrice = row.calculatedListingPrice %}
+                                                 {# @deprecated tag:v6.5.0 - fromPrice will be removed without replacement #}
+                                                 {% set fromPrice = listingPrice.from %}
+
+                                                 {% set cheapest = row.calculatedCheapestPrice %}
+
+                                                 {% set real = row.calculatedPrice %}
+                                                 {% if row.calculatedPrices.count > 0 %}
+                                                     {% set real = row.calculatedPrices.last %}
+                                                 {% endif %}
+
+                                                 {% set referencePrice = real.referencePrice %}
+
+                                                 {% set displayFrom = row.calculatedPrices.count > 1 %}
+
+                                                 {% block component_product_box_price %}
+                                                     <div class="product-price-wrapper">
+                                                         {% set price = real %}
+
+                                                         {% set isListPrice = price.listPrice.percentage > 0 %}
+                                                         {% set isRegulationPrice = price.regulationPrice != null %}
+
+
+                                                         <div
+                                                             class="product-cheapest-price{% if isListPrice and price.regulationPrice.price and not displayFrom %} with-list-price{% endif %}{% if isRegulationPrice and displayFrom %} with-regulation-price{% endif %}">
+                                                             {% if cheapest.unitPrice != real.unitPrice %}
+                                                                 <div>{{ "listing.cheapestPriceLabel"|trans|sw_sanitize }}
+                                                                     <span
+                                                                         class="product-cheapest-price-price"> {{ cheapest.unitPrice|currency }}{{ "general.star"|trans|sw_sanitize }}</span>
+                                                                 </div>
+                                                             {% endif %}
+                                                         </div>
+
+                                                         <span
+                                                             class="product-price{% if isListPrice and not displayFrom %} with-list-price{% endif %}">
+                                                     <span class="price-title"> {{ 'nzzFlyoutMenu.navigation.price'|trans|sw_sanitize }}</span>
+                                                          {{ price.unitPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+
+                                                             {% if isListPrice and not displayFrom %}
+                                                             {% set afterListPriceSnippetExists = "listing.afterListPrice"|trans|length > 0 %}
+                                                             {% set beforeListPriceSnippetExists = "listing.beforeListPrice"|trans|length > 0 %}
+                                                             {% set hideStrikeTrough = beforeListPriceSnippetExists or afterListPriceSnippetExists %}
+
+                                                             <span
+                                                                 class="list-price{% if hideStrikeTrough %} list-price-no-line-through{% endif %}">
+                                                             {% if beforeListPriceSnippetExists %}{{ "listing.beforeListPrice"|trans|trim|sw_sanitize }}{% endif %}
+
+                                                                <span
+                                                                    class="list-price-price">{{ price.listPrice.price|currency }}{{ "general.star"|trans|sw_sanitize }}</span>
+
+                                                                {% if afterListPriceSnippetExists %}{{ "listing.afterListPrice"|trans|trim|sw_sanitize }}{% endif %}{% endif %}
+                                                                </span>
+                                                             {% if isRegulationPrice %}
+                                                                 <span class="product-price with-regulation-price">
+                                                                  {% if isListPrice %}<br/>{% endif %}<span
+                                                                         class="regulation-price">{{ "general.listPricePreviously"|trans({'%price%': price.regulationPrice.price|currency }) }}{{ "general.star"|trans|sw_sanitize }}</span>
+                                                                     </span>
+                                                             {% endif %}
+                                                     </span>
+                                                     </div>
+                                                 {% endblock %}
+                                                 {% block multiprice %}
+                                                     {% block abonnentenpreis_price_label %}
+                                                         {% set loginStatus = context.customer.guest %}
+
+                                                         {% set customervalue = context.customer %}
+                                                         {% if loginStatus == "true" || customervalue == null %}
+
+                                                             {% set ruleidarray = row.prices.elements %}
+                                                             {% set customerGrossPrice = null %}
+                                                             {% set customerGrossPriceListPrice = null %}
+                                                             {% for ruleconfirmid in ruleidarray %}
+                                                                 {% set ruleid = ruleconfirmid.ruleId %}
+                                                                 {% if ruleid == configvalue %}
+                                                                     {% set customerGroupPriceArray = ruleconfirmid.price.elements %}
+                                                                     {% for customerGroupPrice in customerGroupPriceArray %}
+                                                                         {% if multiplePriceGrossNet == "gross" %}
+                                                                             {% set customerGrossPrice = customerGroupPrice.gross %}
+                                                                             {% set customerGrossPriceListPrice = customerGroupPrice.listPrice.gross %}
+                                                                         {% elseif multiplePriceGrossNet == "net" %}
+                                                                             {% set customerGrossPrice = customerGroupPrice.net %}
+                                                                             {% set customerGrossPriceListPrice = customerGroupPrice.listPrice.net %}
+                                                                         {% endif %}
+                                                                     {% endfor %}
+                                                                 {% endif %}
+                                                             {% endfor %}
+
+                                                             {% if customerGrossPrice != null %}
+                                                                 <div class="abonnenten-preis">
+                                                                     <div
+                                                                         class="price-label abonnentenpreis">{{ "multiplePrices.priceLabel"|trans|sw_sanitize }}</div>
+                                                                     <span
+                                                                         class="price--default is--nowrap">{{ customerGrossPrice |currency }}</span>
+
+                                                                     <span class="product-detail-list-price-wrapper">
+                                                                    <span{% if not (afterListPriceSnippetExists or beforeListPriceSnippetExists) %} class="list-price-price"{% endif %}>{{ customerGrossPriceListPrice|currency }}</span>
+                                                                 </span>
+                                                                 </div>
+                                                             {% endif %}
+                                                         {% endif %}
+                                                     {% endblock %}
+                                                 {% endblock %}
+                                             </div>
+                                         </div>
+                                     {% endfor %}
+                                 {% endif %}
+                             </div>
+                         </div>
+                     {% else %}
+                         {{ parent() }}
+                     {% endif %}
+
+                 {% endblock %}
+             </div>
+         {% endblock %}
+
+     </div>
+ {% endblock %}

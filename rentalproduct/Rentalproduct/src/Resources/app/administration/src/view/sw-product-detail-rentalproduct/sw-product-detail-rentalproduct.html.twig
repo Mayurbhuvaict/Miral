@@ -1,0 +1,165 @@
+{% block sw_product_detail_rentalproduct %}
+    <div class="sw-product-detail-rentalproduct">
+        {% block sw_product_detail_rentalproduct_items %}
+{#            {{ newRentalProductData }}#}
+            <sw-container
+                v-if="newRentalProductData && newRentalProductData.length > 0"
+                columns="100%"
+            >
+                <sw-card :title="$tc('sw-product.rentalProduct.cardTitle')">
+                    {% block sw_product_detail_rentalproduct_items_card_toolbar %}
+                        <div class="sw-product-detail-context-prices__toolbar">
+                            <sw-container
+                                columns="1fr 1fr"
+                                gap="0 10px"
+                            >
+                                        {% block sw_product_detail_rentalproduct_items_card_toolbar_rule_deletepart %}
+                                            <div></div>
+                                        {% endblock %}
+                                        {% block sw_product_detail_rentalproduct_items_card_toolbar_rule_delete %}
+                                        <sw-button
+                                            class="product-detail-context-rental__context-delete"
+                                        v-tooltip="{
+                                            message: $tc('sw-privileges.tooltip.warning'),
+                                            disabled: acl.can('product.editor'),
+                                            showOnDisabledElements: true
+                                        }"
+                                        size="small"
+                                        :disabled="!acl.can('product.editor')"
+                                        @click="onDeleteRentalProduct()"
+                                        >
+                                            {{ $tc('sw-product.rentalProduct.buttonDelete') }}
+                                    </sw-button>
+                                {% endblock %}
+
+                            </sw-container>
+                        </div>
+                    {% endblock %}
+
+                    {% block sw_product_detail_rentalproduct_items_card_dayrule_group_grid %}
+                        <sw-data-grid
+                            :data-source="newRentalProductData"
+                            :columns="dayRuleColumns"
+                             show-settings
+                            :show-selection="false"
+                            :compact-mode="true"
+                        >
+
+
+                            {% block sw_product_detail_rentalproduct_items_card_dayrule_group_grid_day_start %}
+                                <template
+                                    slot="column-dayStart"
+                                    slot-scope="{ item, itemIndex, compact }"
+                                >
+
+                                    {% block sw_product_detail_rentalproduct_items_card_dayrule_group_grid_day_start_field %}
+                                        <sw-field
+                                            type="number"
+                                            v-model="item.dayStart"
+                                            :size="compact ? 'small' : 'default'"
+                                            :disabled="(itemIndex === 0 && item.dayStart === 1) || !acl.can('product.editor')"
+                                            v-tooltip="getStartDayTooltip(itemIndex, item.dayStart)"
+                                            :name="`${item.ruleId}-${item.dayStart}-dayStart`"
+                                            validation="required"
+                                            :min="item[itemIndex - 1] ? item[itemIndex - 1].dayEnd + 1 : 1"
+                                            :max="item.dayEnd ? item.dayEnd : null"
+                                        />
+
+                                    {% endblock %}
+                                </template>
+                            {% endblock %}
+
+                            {% block sw_product_detail_rentalproduct_items_card_dayrule_group_grid_day_end %}
+                                <template
+                                    slot="column-dayEnd"
+                                    slot-scope="{ item, itemIndex, compact }"
+                                >
+                                    {% block sw_product_detail_rentalproduct_items_card_dayrule_group_grid_day_end_field %}
+                                        <sw-field
+                                            v-model="item.dayEnd"
+                                            type="number"
+                                            placeholder="∞"
+                                            :size="compact ? 'small' : 'default'"
+                                            :min="item.dayStart"
+                                            :max="newRentalProductData[itemIndex + 1] ? newRentalProductData[itemIndex + 1].dayStart - 1 : null"
+                                            :name="`${item.ruleId}-${item.dayStart}-dayEnd`"
+                                            :validation="item.dayEnd === null || item.dayEnd > item.dayStart"
+                                            :disabled="!acl.can('product.editor')"
+                                            @change="onDayEndChange(item, newRentalProductData)"
+                                        />
+
+                                    {% endblock %}
+                                </template>
+                            {% endblock %}
+
+                            {% block sw_product_detail_rentalproduct_items_card_dayrule_group_grid_day_rule %}
+                            <template
+                                slot="column-ruleId"
+                                slot-scope="{ item, itemIndex, compact }"
+                            >
+                                {% block sw_product_detail_rentalproduct_items_card_dayrule_group_grid_day_rule_field %}
+                                    <sw-entity-single-select
+                                        v-model="item.ruleId"
+                                        entity="rule"
+{#                                        :criteria="ruleTypeData"#}
+                                        :placeholder="$t('sw-product.rentalProduct.dayRule')"
+                                        show-clearable-button>
+                                    </sw-entity-single-select>
+                                {% endblock %}
+                            </template>
+                            {% endblock %}
+
+                            {% block sw_product_detail_rentalproduct_items_card_dayrule_group_grid_actions %}
+                                <template
+                                    slot="actions"
+                                    slot-scope="{ item }"
+                                >
+
+                                    {% block sw_product_detail_rentalproduct_items_card_dayrule_group_grid_actions_delete_field %}
+                                        <sw-context-menu-item
+                                            variant="danger"
+                                            class="product-detail-context-prices__context-delete"
+                                            :disabled="!acl.can('product.editor')"
+                                            @click="onSingleRentalProductDelete(item)"
+
+                                        >
+                                            {{ $tc('sw-product.rentalProduct.buttonDelete') }}
+                                        </sw-context-menu-item>
+                                    {% endblock %}
+
+                                </template>
+                            {% endblock %}
+
+                        </sw-data-grid>
+                    {% endblock %}
+                </sw-card>
+            </sw-container>
+        {% endblock %}
+
+        {% block sw_product_detail_rentalproduct_empty_state %}
+            <sw-card
+                :isLoading="isLoading"
+                class="sw-product-detail-rentalproduct__empty-state"
+                v-else
+            >
+                <template>
+                    <div class="sw-product-detail-rentalproduct__empty-state-inner">
+                        <img :src="'/administration/static/img/empty-states/products-empty-state.svg' | asset" alt="">
+
+                        <div class="sw-product-detail-rentalproduct__empty-state-inner--label">
+                            <p>{{ $tc('sw-product.rentalProduct.emptyStateDescription') }}</p>
+                        </div>
+
+                        {% block sw_product_detail_rentalproduct_empty_state_add %}
+                            <sw-button variant="ghost"
+                                       @click="onAddRentalProduct"
+                                       :disabled="false">
+                                {{ $tc('sw-product.rentalProduct.buttonAdd') }}
+                            </sw-button>
+                        {% endblock %}
+                    </div>
+                </template>
+            </sw-card>
+        {% endblock %}
+    </div>
+{% endblock %}

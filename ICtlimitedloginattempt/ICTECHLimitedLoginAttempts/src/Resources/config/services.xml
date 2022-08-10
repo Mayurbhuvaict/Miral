@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="ICTECHLimitedLoginAttempts\Core\Content\LimitedLogin\IctechLimitedLoginAttemptsDefinition">
+            <tag name="shopware.entity.definition" entity="ictech_limited_login_attempts"/>
+        </service>
+
+        <service id="ICTECHLimitedLoginAttempts\Core\Content\Extension\CustomerExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="ICTECHLimitedLoginAttempts\Core\Checkout\Customer\SalesChannel\LoginRouteDecorated"
+                 decorates="Shopware\Core\Checkout\Customer\SalesChannel\LoginRoute" parent="Shopware\Core\Checkout\Customer\SalesChannel\LoginRoute"   public="true">
+            <argument type="service" id="ictech_limited_login_attempts.repository"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+
+        <service id="ICTECHLimitedLoginAttempts\Storefront\Controller\AuthControllerDecorator" decorates="Shopware\Storefront\Controller\AuthController" parent="Shopware\Storefront\Controller\AuthController" public="true">
+
+        </service>
+
+    </services>
+</container>

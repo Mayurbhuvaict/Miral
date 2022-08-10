@@ -1,0 +1,20 @@
+{% block block_kohlkramer_theme_main_banner %}
+    <div class="kohlkramer-theme-top-image-banner">
+        <div class="kohlkramer-theme-top-image-banner-first-block-contain">
+            {% set element = block.slots.getSlot('center-image') %}
+
+            {% block block_block_kohlkramer_main_banner_image %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+            {% endblock %}
+
+            {% set element = block.slots.getSlot('center-text') %}
+            {% set config = element.fieldConfig.elements %}
+            <div class="col-md-12 kohlkramer-banner-inner"
+                 data-cms-element-id="{{ element.id }}">
+                {% block block_block_kohlkramer_main_banner_inner %}
+                    {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

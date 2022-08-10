@@ -1,0 +1,6 @@
+{% block block_kohlkramer_home_page_slider %}
+    {% set element = block.slots.getSlot('kohlkramerHomePageSlider') %}
+    <div class="col-12 tests" data-cms-element-id="{{ element.id }}">
+        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+    </div>
+{% endblock %}

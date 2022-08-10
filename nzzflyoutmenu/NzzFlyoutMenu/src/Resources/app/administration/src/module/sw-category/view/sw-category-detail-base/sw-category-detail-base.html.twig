@@ -1,0 +1,17 @@
+{% block sw_category_detail_menu %}
+    {% parent %}
+    <sw-card :title="$tc('sw-category.base.nzz-dynamic-group.cardTitleDynamicGroup')">
+        {% block sw_category_nzz_card_dynamic_group_selection %}
+            <sw-entity-single-select
+                entity="product_stream"
+                v-model="selectedDynamicGroup"
+                :label="$tc('sw-category.base.nzz-dynamic-group.labelDynamicGroup')"
+                :placeholder="$tc('sw-category.base.nzz-dynamic-group.placeholderDynamicGroup')"
+                :help-text="$tc('sw-category.base.nzz-dynamic-group.helpTextDynamicGroup')"
+                @change="onNzzDynamicGroupChange"
+                show-clearable-button
+            />
+        {% endblock %}
+    </sw-card>
+{% endblock %}
+
